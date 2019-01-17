@@ -14,14 +14,17 @@ with open('/home/naveed/Dropbox/Pallet_Jack/candump-01-16CW-90.log') as file: #p
                     #print dat[2]
 
                     #writing into text file
-                    file = open('can1_16CW_90_16.csv', 'a+') #name of the file to be written
+                    file = open('can1_16CW90_16_2.csv', 'a+') #name of the file to be written
                     file.write(str(float(dat[0][1:18])-1547668991.0000 ))
                     #print str(float(dat[0][1:18])-1547668991.0000)
                     file.write(',')
-                    for j in range(4): #iterate over 8 bytes and write one byte at a time with delimiter
-                        file.write(str(int(dat[2][4+4*j:4+4*(j+1)],16))) #convert hex data to decimal and write
+                    #for j in range(4): #iterate over 8 bytes and write one byte at a time with delimiter
+                    num = int(dat[2][8:10],16)*256 + int(dat[2][6:8],16)
+                    #print int(dat[2][6:8],16)
+                    #print num
+                    file.write(str(num)) #convert hex data to decimal and write
                         #file.write(dat[2][4+2*j:4+2*(j+1)]) #write as hex data
-                        file.write(',')
+                    #file.write(',')
                     file.write('\n')
                     file.close()
 
